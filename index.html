@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Obtener Ubicación</title>
+    <script>
+        function obtenerUbicacion() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(mostrarUbicacion);
+            } else {
+                alert("La geolocalización no está soportada por este navegador.");
+            }
+        }
+
+        function mostrarUbicacion(position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var enlace = "https://www.google.com/maps?q=" + lat + "," + lng;
+            document.getElementById("ubicacion").href = enlace;
+            document.getElementById("ubicacion").innerText = "Ver en Google Maps";
+        }
+    </script>
+</head>
+<body onload="obtenerUbicacion()">
+    <h1>Ubicación Actual</h1>
+    <a id="ubicacion" href="#">Cargando...</a>
+</body>
+</html>
